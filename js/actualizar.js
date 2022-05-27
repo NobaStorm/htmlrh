@@ -1,7 +1,7 @@
 
 window.onload = init;
 var headers = {}
-var url = 'http://localhost:3000';
+var url = 'https://api-sistemarh.azurewebsites.net';
 
 function init() {
 
@@ -11,12 +11,12 @@ function init() {
                 'Authorization': "bearer " + localStorage.getItem("token")
             }
         }
-    
+
         var paramstr = window.location.search.substr(1);
         var paramarr = paramstr.split("&");
         var params = paramarr[0]
         loadInfo(params);
-        
+
 
 
         document.querySelector(".btn-primary").addEventListener('click', updateInfo)
@@ -56,28 +56,28 @@ function updateInfo() {
 
     axios({
         method: 'put',
-        url: `http://localhost:3000/empleados/${emp_id}`,
+        url: `https://api-sistemarh.azurewebsites.net/${emp_id}`,
         data: {
             EMP_NAME: emp_name,
             EMP_LASTNAME: emp_lastname,
-            EMP_PHONE : emp_phone,
+            EMP_PHONE: emp_phone,
             EMP_EMAIL: emp_email,
             EMP_ADDRESS: emp_address
         },
         headers: {
             'Authorization': "bearer " + localStorage.getItem("token")
         }
-    }).then(function(res) {
+    }).then(function (res) {
         console.log(res)
-        if (res.data.code === 200){
+        if (res.data.code === 200) {
             alert("Usuario Actualizado Correctamente");
             window.location.href = "main.html";
         }
-        else{
+        else {
             alert("Error al actualizar información del Usuario");
         }
 
-    }).catch(function(err){
+    }).catch(function (err) {
         console.log(err);
     })
 }

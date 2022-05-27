@@ -1,7 +1,7 @@
 
 window.onload = init;
 var headers = {}
-var url = 'http://localhost:3000';
+var url = 'https://api-sistemarh.azurewebsites.net';
 var employees_l = 0;
 
 function init() {
@@ -37,7 +37,7 @@ function loadEmployeesName() {
         loadEmployees();
     }
     axios.get(url + `/empleados/${nombre}`, headers).then(function (res) {
-        
+
         var table_node = document.getElementsByTagName("table")[0];
         table_node.innerHTML = `       <tr>\n` +
             `            <th scope="col">Id</th>\n` +
@@ -57,7 +57,7 @@ function loadEmployeesName() {
 }
 
 function displayEmployees(employees) {
-    
+
     var table_node = document.getElementsByTagName("table")[0];
     for (var i = 0; i < employees.length; i++) {
         table_node.innerHTML += `       <tr>\n` +
@@ -72,50 +72,50 @@ function displayEmployees(employees) {
             `        </tr>`
     }
 
-    
+
 
 }
 
-function borrarEmpleado(id){
+function borrarEmpleado(id) {
 
     var opcion = confirm('¿Estas Seguro que deseas Borrar este Registro?');
-    if(opcion === true){
+    if (opcion === true) {
         axios({
             method: 'delete',
-            url: `http://localhost:3000/empleados/${id}`,
+            url: `https://api-sistemarh.azurewebsites.net/${id}`,
 
             headers: {
                 'Authorization': "bearer " + localStorage.getItem("token")
             }
-        }).then(function(res) {
-            if (res.data.code === 200){
+        }).then(function (res) {
+            if (res.data.code === 200) {
                 alert("Usuario Eliminado Correctamente");
                 window.location.href = "main.html";
             }
-            else{
+            else {
                 alert("Error al Eliminar Usuario");
             }
-    
-        }).catch(function(err){
+
+        }).catch(function (err) {
             console.log(err);
         })
-    }else{
-      alert("No se borró el usuario")
+    } else {
+        alert("No se borró el usuario")
     }
-  }
+}
 
-function agregarEmp(){
+function agregarEmp() {
     window.location.href = "agregarUsr.html";
 
 }
 
-function exit(){
+function exit() {
     var opcion = confirm('¿Quieres Cerrar sesión?');
-    if (opcion === true){
+    if (opcion === true) {
         localStorage.removeItem("token");
         window.location.href = "login2.html";
 
     }
-    
+
 
 }

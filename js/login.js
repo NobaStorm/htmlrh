@@ -1,9 +1,9 @@
 window.onload = init;
 
-function init(){
-    
+function init() {
+
     document.querySelector('.btn-primary').addEventListener('click', login);
-    
+
 }
 
 function login() {
@@ -12,12 +12,12 @@ function login() {
 
     axios({
         method: 'post',
-        url: 'http://localhost:3000/admin/login',
+        url: 'https://api-sistemarh.azurewebsites.net/login',
         data: {
             ADMIN_EMAIL: mail,
             ADMIN_PASSWORD: pass
         }
-    }).then(function(res) {
+    }).then(function (res) {
         if (res.data.code === 200) {
             localStorage.setItem("token", res.data.message);
             window.location.href = "main.html";
@@ -26,7 +26,7 @@ function login() {
             alert("Usuario y/o Contraseña incorrectos");
         }
 
-    }).catch(function(err){
+    }).catch(function (err) {
         console.log(err);
     })
 

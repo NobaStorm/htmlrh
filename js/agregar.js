@@ -1,6 +1,6 @@
 window.onload = init;
 var headers = {}
-var url = 'http://localhost:3000';
+var url = 'https://api-sistemarh.azurewebsites.net';
 
 
 function init() {
@@ -16,7 +16,7 @@ function init() {
 
 }
 
-function postInfo(){
+function postInfo() {
 
     var emp_name = document.getElementById('name').value;
     var emp_lastname = document.getElementById('lastName').value;
@@ -27,29 +27,29 @@ function postInfo(){
 
     axios({
         method: 'post',
-        url: `http://localhost:3000/empleados/`,
+        url: `https://api-sistemarh.azurewebsites.net/empleados/`,
         data: {
             EMP_NAME: emp_name,
             EMP_LASTNAME: emp_lastname,
-            EMP_PHONE : emp_phone,
+            EMP_PHONE: emp_phone,
             EMP_EMAIL: emp_email,
             EMP_ADDRESS: emp_address
         },
         headers: {
             'Authorization': "bearer " + localStorage.getItem("token")
         }
-    }).then(function(res) {
+    }).then(function (res) {
         console.log(res)
 
-        if (res.data.code === 200){
+        if (res.data.code === 200) {
             alert("Usuario Agregado Correctamente");
             window.location.href = "main.html";
         }
-        else{
+        else {
             alert("Error al ingresar Usuario favor de volver a intentarlo");
         }
 
-    }).catch(function(err){
+    }).catch(function (err) {
         console.log(err);
     })
 }
