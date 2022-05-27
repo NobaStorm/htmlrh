@@ -12,7 +12,7 @@ function login() {
 
     axios({
         method: 'post',
-        url: 'https://api-sistemarh.azurewebsites.net/login',
+        url: 'https://api-sistemarh.azurewebsites.net/admin/login',
         data: {
             ADMIN_EMAIL: mail,
             ADMIN_PASSWORD: pass
